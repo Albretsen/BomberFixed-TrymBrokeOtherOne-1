@@ -62,6 +62,8 @@ public class PauseMenu : MonoBehaviour {
 
     public void Back()
     {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
         optionsMenu.SetActive(false);
     }
 
