@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Bullet
+  - PatrolPost
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Enemy
+  - Player
+  - Objective
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 2259995969
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: CaveBackground
+    uniqueID: 332319033
+    locked: 0
+  - name: Decorations
+    uniqueID: 1449290063
+    locked: 0
+  - name: Player
+    uniqueID: 2962472405
+    locked: 0
+  - name: Dirt
+    uniqueID: 1497604943
+    locked: 0
+  - name: WALLGRAS
+    uniqueID: 1578744217
+    locked: 0
+  - name: Grass
+    uniqueID: 2028369469
+    locked: 0
+  - name: Explosion
+    uniqueID: 175670863
+    locked: 0
+  - name: Foreground
+    uniqueID: 3616930151
+    locked: 0
+  - name: UI
+    uniqueID: 688867509
+    locked: 0
