@@ -33,9 +33,9 @@ public class EnemyController : MonoBehaviour {
     Rigidbody2D rb;
     SpriteRenderer sr;
     Transform tf;
-    Transform lsr; //LeftSideRay
-    Transform rsr; //RightSideRay
-    Transform arm;
+    public Transform lsr; //LeftSideRay
+    public Transform rsr; //RightSideRay
+    public Transform arm;
     Transform player;
 
 	// Use this for initialization
@@ -43,10 +43,10 @@ public class EnemyController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         tf = GetComponent<Transform>();
-        player = GameObject.Find("Player").GetComponent<Transform>();
-        lsr = transform.Find("LeftSideRay");
+        //player = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+        /*lsr = transform.Find("LeftSideRay");
         rsr = transform.Find("RightSideRay");
-        arm = transform.Find("Arm");
+        arm = gameObject.transform.GetChild(0);*/
 
         //DECIDE INITIAL DIRECTION
         walkDirection = Random.Range(1, 3);
@@ -99,6 +99,7 @@ public class EnemyController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        player = GameObject.Find("Player(Clone)").GetComponent<Transform>();
         //ARM ROTATION!
         //arm.RotateAround(rotate.position, Vector3.forward, 20 * Time.deltaTime);
 

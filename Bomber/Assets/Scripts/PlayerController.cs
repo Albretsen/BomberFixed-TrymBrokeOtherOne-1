@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour {
                 sr.flipX = false;
             }
             //MOVE AFTER LANDING
-            if(rb.velocity.y > 0.5f || rb.velocity.y < -0.2f)
+            if(rb.velocity.y > 0.1f || rb.velocity.y < -0.1f)
             {
                 if (IsGrounded())
                 {
@@ -144,12 +144,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         //FALLING ANIMATION WHEN GOING DOWN WITHOUT JUMPING
-        if(!IsGrounded() && rb.velocity.y < -0.5)
+        if(!IsGrounded() && rb.velocity.y < -0.1)
         {
             anim.SetInteger("State", 4);
         }
 
-        if(!IsGrounded() && rb.velocity.y > 0.5)
+        if(!IsGrounded() && rb.velocity.y > 0.1)
         {
             anim.SetInteger("State", 3);
         }

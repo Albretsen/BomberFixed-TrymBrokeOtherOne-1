@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    public GameObject player;
     public Transform target;
     public float damping = 1;
     public float lookAheadFactor = 3;
@@ -19,8 +20,8 @@ public class CameraFollow : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        m_LastTargetPosition = target.position;
-        m_OffsetZ = (transform.position - target.position).z;
+        //m_LastTargetPosition = target.position;
+        //m_OffsetZ = (transform.position - target.position).z;
         transform.parent = null;
 
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
@@ -30,6 +31,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        player = GameObject.Find("Player(Clone)");
+        target = player.transform.Find("CameraFollowObject").transform;
+        
         // only update lookahead pos if accelerating or changed direction
         if (!GameMaster.playerDead)
         {

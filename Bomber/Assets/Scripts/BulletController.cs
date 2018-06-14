@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour {
 
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
     }
 
 	void OnTriggerEnter2D(Collider2D c)

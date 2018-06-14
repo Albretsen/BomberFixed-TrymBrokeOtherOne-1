@@ -8,14 +8,25 @@ public class GameMaster : MonoBehaviour {
     Vector2 localDirection;
     public static float distance = 1f;
     public static bool playerDead = false;
+    public static string selectedChar;
 
-	void Start () {
+    public GameObject playerPrefab;
+    public Transform spawn;
+    public GameObject[] characterList;
+    PlayerController playerController;
+
+    void Start () {
         playerDead = false;
+        selectedChar = PlayerPrefs.GetString("SelectedChar", "Default");
+        spawn = GameObject.Find("PlayerSpawnPos").GetComponent<Transform>();
+        SpawnPlayer();
     }
 
-    public void NextScene()
+    void SpawnPlayer()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        var Player = (GameObject)Instantiate(characterList[0], spawn.position, transform.rotation);
+        Player.name = "Player(Clone)";
+        playerController = Player.GetComponent<PlayerController>();
     }
 
     //STORES A VECTOR2 DIRECTIOM WHICH IS FIRST GIVEN BY THE PLAYERCONTROLLER SCRIPT(1),
@@ -32,5 +43,37 @@ public class GameMaster : MonoBehaviour {
             return -localDirection;
         }
         return direction;
+    }
+
+    //MOBILE CONTROLS
+    public void MoveRight()
+    {
+        playerController.MoveRight();
+    }
+    public void MoveLeft()
+    {
+        playerController.MoveLeft();
+    }
+
+    public void MoveRightReleased()
+    {
+        playerController.MoveRightReleased();
+    }
+    public void MoveLeftReleased()
+    {
+        playerController.MoveLeftReleased();
+    }
+
+    public void JumpMobile()
+    {
+        playerController.JumpMobile();
+    }
+    public void JumpMobileReleased()
+    {
+        playerController.JumpMobileReleased();
+    }
+    public void Hit()
+    {
+        playerController.Hit();
     }
 }
