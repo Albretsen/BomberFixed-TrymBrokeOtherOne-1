@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour {
     public void Back()
     {
         SceneManager.LoadScene(0);
+        Debug.Log(PlayerPrefs.GetString("SelectedChar"));
     }
 
     public void Play()
@@ -66,4 +67,20 @@ public class MainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("Character");
     }
+
+    //CHARACTER SELECTOR
+    public void Tom()
+    {
+        PlayerPrefs.SetString("SelectedChar", "Tom");
+
+    }
+    public void BigBombTom()
+    {
+        PlayerPrefs.SetString("SelectedChar", "BigBombTom");
+    }
+    public void Tommy()
+    {
+        PlayerPrefs.SetString("SelectedChar", "Tommy");
+    }
 }
+

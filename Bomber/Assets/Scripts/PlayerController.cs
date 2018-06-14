@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour {
                 sr.flipX = false;
             }
             //MOVE AFTER LANDING
-            if(rb.velocity.y > 0.1f || rb.velocity.y < -0.1f)
+            if(rb.velocity.y > 0.01f || rb.velocity.y < -0.01f)
             {
                 if (IsGrounded())
                 {
