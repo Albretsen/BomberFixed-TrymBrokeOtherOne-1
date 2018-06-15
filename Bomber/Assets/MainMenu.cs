@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     public Dropdown dropdown;
+    public Scrollbar scroll;
+    public Text preview;
     int dropDownSelected;
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,7 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        //preview.text = "Hi";
 	}
 
     public void Dropdown()
@@ -50,6 +52,11 @@ public class MainMenu : MonoBehaviour {
                 Debug.Log("CHARACTER NOT FOUND!!");
                 break;
         }
+    }
+
+    public void Scroll()
+    {
+        Debug.Log(scroll.value);
     }
 
     public void Back()
@@ -72,15 +79,17 @@ public class MainMenu : MonoBehaviour {
     public void Tom()
     {
         PlayerPrefs.SetString("SelectedChar", "Tom");
-
+        preview.text = "Tom";
     }
     public void BigBombTom()
     {
         PlayerPrefs.SetString("SelectedChar", "BigBombTom");
+        preview.text = "BigBombTom";
     }
     public void Tommy()
     {
         PlayerPrefs.SetString("SelectedChar", "Tommy");
+        preview.text = "Tommy";
     }
 }
 
