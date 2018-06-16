@@ -24,12 +24,15 @@ public class CharacterDisplay : MonoBehaviour {
 
     public void Display(string character)
     {
+        PlayerPrefs.SetString("SelectedChar", character);
+
         currChar = PlayerPrefs.GetString("SelectedChar");
 
         if (characterDisplayedCurrently)
         {
             anim.SetInteger("State", 1);
             currChar = PlayerPrefs.GetString("SelectedChar");
+
             switch (character)
             {
                 case "Tom":

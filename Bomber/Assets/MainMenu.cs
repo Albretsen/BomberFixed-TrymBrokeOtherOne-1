@@ -73,7 +73,6 @@ public class MainMenu : MonoBehaviour {
     public void Back()
     {
         SceneManager.LoadScene(0);
-        Debug.Log(PlayerPrefs.GetString("SelectedChar"));
     }
 
     public void Play()
