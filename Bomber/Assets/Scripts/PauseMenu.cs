@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenuUI;
     public GameObject optionsMenu;
+    public GameObject buttons;
     public AudioMixer audioMixer;
     public Slider mainSlider;
 
@@ -65,6 +66,7 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 1f;
         GameIsPaused = false;
         optionsMenu.SetActive(false);
+        buttons.SetActive(true);
     }
 
     public void Options()
@@ -80,6 +82,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
+        buttons.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -87,6 +90,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Pause()
     {
+        buttons.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;

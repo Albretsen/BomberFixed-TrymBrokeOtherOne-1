@@ -10,16 +10,22 @@ public class GameMaster : MonoBehaviour {
     public static bool playerDead = false;
     public static string selectedChar;
 
+    Scene scene;
+
     public GameObject playerPrefab;
     public Transform spawn;
     public GameObject[] characterList;
     PlayerController playerController;
 
     void Start () {
+        scene = SceneManager.GetActiveScene();
         playerDead = false;
         selectedChar = PlayerPrefs.GetString("SelectedChar", "Default");
-        spawn = GameObject.Find("PlayerSpawnPos").GetComponent<Transform>();
-        SpawnPlayer();
+        if (scene.name != "Character" && scene.name != "MainMenu")
+        {
+            spawn = GameObject.Find("PlayerSpawnPos").GetComponent<Transform>();
+            SpawnPlayer();
+        }
     }
 
     void SpawnPlayer()

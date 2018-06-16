@@ -10,29 +10,40 @@ public class MainMenu : MonoBehaviour {
     public Dropdown dropdown;
     public Scrollbar scroll;
     public Text preview;
+
+    Scene scene;
     int dropDownSelected;
 	// Use this for initialization
 	void Start () {
-        switch (PlayerPrefs.GetString("SelectedChar"))
+        //FIND CURRENT SCENE
+        scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "DONT DO THIS")
         {
-            case "Tom":
-                dropdown.value = 0;
-                break;
-            case "BigBombTom":
-                dropdown.value = 1;
-                break;
-            case "Tommy":
-                dropdown.value = 2;
-                break;
-            default:
-                Debug.Log("CURR CHAR NOT FOUND IN DROPDOWN LIST");
-                break;
+            switch (PlayerPrefs.GetString("SelectedChar"))
+            {
+                case "Tom":
+                    dropdown.value = 0;
+                    break;
+                case "BigBombTom":
+                    dropdown.value = 1;
+                    break;
+                case "Tommy":
+                    dropdown.value = 2;
+                    break;
+                default:
+                    Debug.Log("CURR CHAR NOT FOUND IN DROPDOWN LIST");
+                    break;
+            }
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //preview.text = "Hi";
+        if (scene.name == "Character")
+        {
+            preview.text = PlayerPrefs.GetString("SelectedChar");
+        }
 	}
 
     public void Dropdown()
