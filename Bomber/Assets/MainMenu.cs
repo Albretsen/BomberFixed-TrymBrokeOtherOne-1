@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour {
 	void Update () {
         if (scene.name == "Character")
         {
-            preview.text = PlayerPrefs.GetString("SelectedChar");
+            //preview.text = PlayerPrefs.GetString("SelectedChar");
         }
 	}
 
@@ -90,17 +90,14 @@ public class MainMenu : MonoBehaviour {
     public void Tom()
     {
         PlayerPrefs.SetString("SelectedChar", "Tom");
-        preview.text = "Tom";
     }
     public void BigBombTom()
     {
         PlayerPrefs.SetString("SelectedChar", "BigBombTom");
-        preview.text = "BigBombTom";
     }
     public void Tommy()
     {
         PlayerPrefs.SetString("SelectedChar", "Tommy");
-        preview.text = "Tommy";
     }
 }
 
