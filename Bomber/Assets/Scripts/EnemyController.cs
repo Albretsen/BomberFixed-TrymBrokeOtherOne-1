@@ -99,7 +99,10 @@ public class EnemyController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        player = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+        if (!GameMaster.playerDead)
+        {
+            player = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+        }
         //ARM ROTATION!
         //arm.RotateAround(rotate.position, Vector3.forward, 20 * Time.deltaTime);
 

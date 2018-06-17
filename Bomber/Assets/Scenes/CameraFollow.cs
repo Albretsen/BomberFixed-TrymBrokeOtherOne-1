@@ -31,8 +31,11 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        player = GameObject.Find("Player(Clone)");
-        target = player.transform.Find("CameraFollowObject").transform;
+        if (!GameMaster.playerDead)
+        {
+            player = GameObject.Find("Player(Clone)");
+            target = player.transform.Find("CameraFollowObject").transform;
+        }
         
         // only update lookahead pos if accelerating or changed direction
         if (!GameMaster.playerDead)
