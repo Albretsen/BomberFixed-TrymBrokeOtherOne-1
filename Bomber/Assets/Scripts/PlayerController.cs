@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour {
             {
                 obj.Hit((transform.position - tfObj.position).normalized);
                 GameMaster.distance = Vector2.Distance(transform.position, tfObj.position);
-                Debug.Log(GameMaster.distance);
             }
         }
 
@@ -88,6 +87,8 @@ public class PlayerController : MonoBehaviour {
         //DETECT HORIZONTAL INPUT
         if(Input.GetAxisRaw("Horizontal") != 0 || moveRight || moveLeft)
         {
+
+
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 HorizontalMovement(Input.GetAxisRaw("Horizontal"));
@@ -153,7 +154,7 @@ public class PlayerController : MonoBehaviour {
         {
             anim.SetInteger("State", 3);
         }
-	}
+    }
 
     //JUMP
     void Jump()
@@ -174,7 +175,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Ground"))
         {
             //STARTS IDLE ANIMATION AFTER LANDING
-            anim.SetInteger("State", 0);
+            anim.SetInteger("State", 1);
         }
     }
 

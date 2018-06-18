@@ -17,6 +17,7 @@ public class Hologram : MonoBehaviour {
     public GameObject tom2X;
 
     int pos;
+    float timePassed;
 
     void Start()
     {
@@ -43,51 +44,59 @@ public class Hologram : MonoBehaviour {
 
     public void ArrowRight()
     {
-        switch (pos)
+        if (Time.time > timePassed)
         {
-            case 0:
-                DeleteChar();
-                pos = 1;
-                charAnim.SetInteger("Anim", 1);
-                anim.SetInteger("State",pos);
-                PlayerPrefs.SetString("SelectedChar", "Tommy");
-                InstantiateChar(true);
-                break;
-            case 1:
-                DeleteChar();
-                pos = 2;
-                charAnim.SetInteger("Anim", 1);
-                anim.SetInteger("State", pos);
-                PlayerPrefs.SetString("SelectedChar", "Tom2X");
-                InstantiateChar(true);
-                break;
-            default:
-                break;
+            timePassed = Time.time + 1f;
+            switch (pos)
+            {
+                case 0:
+                    DeleteChar();
+                    pos = 1;
+                    charAnim.SetInteger("Anim", 1);
+                    anim.SetInteger("State", pos);
+                    PlayerPrefs.SetString("SelectedChar", "Tommy");
+                    InstantiateChar(true);
+                    break;
+                case 1:
+                    DeleteChar();
+                    pos = 2;
+                    charAnim.SetInteger("Anim", 1);
+                    anim.SetInteger("State", pos);
+                    PlayerPrefs.SetString("SelectedChar", "Tom2X");
+                    InstantiateChar(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     public void ArrowLeft()
     {
-        switch (pos)
+        if (Time.time > timePassed)
         {
-            case 2:
-                DeleteChar();
-                pos = 1;
-                charAnim.SetInteger("Anim", 1);
-                anim.SetInteger("State", pos);
-                PlayerPrefs.SetString("SelectedChar", "Tommy");
-                InstantiateChar(true);
-                break;
-            case 1:
-                DeleteChar();
-                pos = 0;
-                charAnim.SetInteger("Anim", 1);
-                anim.SetInteger("State", pos);
-                PlayerPrefs.SetString("SelectedChar", "Tom");
-                InstantiateChar(true);
-                break;
-            default:
-                break;
+            timePassed = Time.time + 1f;
+            switch (pos)
+            {
+                case 2:
+                    DeleteChar();
+                    pos = 1;
+                    charAnim.SetInteger("Anim", 1);
+                    anim.SetInteger("State", pos);
+                    PlayerPrefs.SetString("SelectedChar", "Tommy");
+                    InstantiateChar(true);
+                    break;
+                case 1:
+                    DeleteChar();
+                    pos = 0;
+                    charAnim.SetInteger("Anim", 1);
+                    anim.SetInteger("State", pos);
+                    PlayerPrefs.SetString("SelectedChar", "Tom");
+                    InstantiateChar(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
