@@ -101,6 +101,14 @@ public class PlayerController : MonoBehaviour {
             {
                 HorizontalMovement(-1);
             }
+            //MOVE AFTER LANDING
+            if (rb.velocity.y > 0.01f || rb.velocity.y < -0.01f)
+            {
+                if (IsGrounded())
+                {
+                    anim.SetInteger("State", 2);
+                }
+            }
 
             //STARTS WALKING ANIMATION
             if (IsGrounded())
@@ -115,14 +123,6 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 sr.flipX = false;
-            }
-            //MOVE AFTER LANDING
-            if(rb.velocity.y > 0.01f || rb.velocity.y < -0.01f)
-            {
-                if (IsGrounded())
-                {
-                    anim.SetInteger("State", 2);
-                }
             }
         }
         else
@@ -170,14 +170,14 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             //STARTS IDLE ANIMATION AFTER LANDING
             anim.SetInteger("State", 1);
         }
-    }
+    }*/
 
     //CHECK IF GROUNDED
     bool IsGrounded()

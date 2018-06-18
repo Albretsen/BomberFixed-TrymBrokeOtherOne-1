@@ -109,7 +109,7 @@ public class Explosion : MonoBehaviour {
         //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
         if (hasExploded && timePassed < Time.time)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

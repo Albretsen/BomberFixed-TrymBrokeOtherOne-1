@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenuUI;
     public GameObject optionsMenu;
+    public GameObject winScreen;
     public GameObject buttons;
     public AudioMixer audioMixer;
     public Slider mainSlider;
@@ -45,6 +46,22 @@ public class PauseMenu : MonoBehaviour {
         //AUDIO
 
 	}
+
+    public void WinScreen()
+    {
+        buttons.SetActive(false);
+        winScreen.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
 
     public void SetVolume (float volume)
     {

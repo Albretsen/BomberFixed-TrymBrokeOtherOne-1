@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //FIND CURRENT SCENE
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         scene = SceneManager.GetActiveScene();
 
         if (scene.name == "DONT DO THIS")
@@ -35,6 +36,11 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("CURR CHAR NOT FOUND IN DROPDOWN LIST");
                     break;
             }
+        }
+
+        if(PlayerPrefs.GetString("SelectedChar") != "Tom" && PlayerPrefs.GetString("SelectedChar") != "Tommy" && PlayerPrefs.GetString("SelectedChar") != "Tom2X")
+        {
+            PlayerPrefs.SetString("SelectedChar", "Tom");
         }
     }
 	
@@ -82,7 +88,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Character()
     {
-        SceneManager.LoadScene("CharacterAdvanced");
+        SceneManager.LoadScene(4);
     }
 
     //CHARACTER SELECTOR

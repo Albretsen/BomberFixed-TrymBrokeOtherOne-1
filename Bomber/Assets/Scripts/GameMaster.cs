@@ -18,6 +18,7 @@ public class GameMaster : MonoBehaviour {
     PlayerController playerController;
 
     void Start () {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         scene = SceneManager.GetActiveScene();
         playerDead = false;
         selectedChar = PlayerPrefs.GetString("SelectedChar", "Default");

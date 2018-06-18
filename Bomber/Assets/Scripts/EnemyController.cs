@@ -11,10 +11,12 @@ public class EnemyController : MonoBehaviour {
     public float fireRate;
     public float viewDistance;
     public float bulletDestroySeconds;
+    public bool gravityBullets;
     public bool disable;
 
     //PUBLIC REFERENCES
     public GameObject bulletPrefab;
+    public GameObject bulletGravityPrefab;
     public GameObject muzzleFlashEffect;
     public Transform bulletSpawn;
     public Transform rotate;
@@ -28,6 +30,7 @@ public class EnemyController : MonoBehaviour {
     int walkDirection;
     float nextFire = 0.0f;
     float shootAllowed = 0.0f;
+    GameObject bullet;
 
     //REFERENCES
     Rigidbody2D rb;
@@ -87,7 +90,14 @@ public class EnemyController : MonoBehaviour {
             float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
 
-            var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            if (!gravityBullets)
+            {
+                bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            }
+            else
+            {
+                bullet = (GameObject)Instantiate(bulletGravityPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            }
             var muzzleFlash = (GameObject)Instantiate(muzzleFlashEffect, bulletSpawn.position, bulletSpawn.rotation);
 
             bullet.GetComponent<Rigidbody2D>().velocity = heading.normalized * bulletSpeed;

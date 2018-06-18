@@ -16,6 +16,8 @@ public class ObjectiveExplosion : MonoBehaviour
     public Rigidbody2D footLeft;
     public Rigidbody2D torso;
 
+    PauseMenu pauseMenu;
+
     //
     Vector2 direction = new Vector2(1f, 0.1f);
     GameMaster gm;
@@ -25,7 +27,8 @@ public class ObjectiveExplosion : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timePassed = Time.time + 3;
+        timePassed = Time.time + 1;
+        pauseMenu = GameObject.Find("MENU").GetComponent<PauseMenu>();
         gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
 
@@ -41,7 +44,8 @@ public class ObjectiveExplosion : MonoBehaviour
         //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
         if(hasExploded && timePassed < Time.time)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            pauseMenu.WinScreen();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }
 
