@@ -88,7 +88,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Character()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     //CHARACTER SELECTOR

@@ -13,11 +13,19 @@ public class PauseMenu : MonoBehaviour {
     public GameObject optionsMenu;
     public GameObject winScreen;
     public GameObject buttons;
+    public Text score;
     public AudioMixer audioMixer;
     public Slider mainSlider;
 
 
     float volume1;
+
+    float timeSpent;
+    float levelMaxTime;
+    float levelScore;
+
+    string scene;
+    bool scoreSet;
 
     void Start()
     {
@@ -49,8 +57,21 @@ public class PauseMenu : MonoBehaviour {
 
     public void WinScreen()
     {
+        scene = SceneManager.GetActiveScene().name;
         buttons.SetActive(false);
         winScreen.SetActive(true);
+
+        if (!scoreSet)
+        {
+            timeSpent = Time.time;
+            if(scene == "TestScene2")
+            {
+
+            }
+            Debug.Log("Time.time = " + Time.time);
+            score.text = timeSpent.ToString();
+            scoreSet = true;
+        }
     }
 
     public void Restart()

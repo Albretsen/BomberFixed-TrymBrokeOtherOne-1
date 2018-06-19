@@ -27,9 +27,9 @@ public class Hologram : MonoBehaviour {
     void Start()
     {
         //INITIALIZE DESCRIPTIONS
-        tomDescription = "This is a very general description about the most average bomber you will ever find, Tom. Well, it's more like a placeholder text.";
-        tommyDescription = "This is a very general description about the most average bomber you will ever find, Tommy. Well, it's more like a placeholder text.";
-        tom2xDescription = "This is a very general description about the most average bomber you will ever find, Tom2X. Well, it's more like a placeholder text.";
+        tomDescription = "This is a very general description about the most average bomber you will ever find, Tom.";
+        tommyDescription = "This is a very general description about the most average bomber you will ever find, Tommy.";
+        tom2xDescription = "This is a very general description about the most average bomber you will ever find, Tom2X.";
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         anim = text.GetComponent<Animator>();
