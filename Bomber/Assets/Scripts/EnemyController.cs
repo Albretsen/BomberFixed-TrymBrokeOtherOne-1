@@ -42,6 +42,7 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Transform tf;
+    public SpriteRenderer armRenderer;
     public Transform lsr; //LeftSideRay
     public Transform rsr; //RightSideRay
     public Transform arm;
@@ -148,12 +149,14 @@ public class EnemyController : MonoBehaviour
                     if(tf.rotation.y != 0)
                     {
                         arm.rotation = Quaternion.Euler(0f, 0, rotZ + rotationOffset);
+                        armRenderer.flipY = true;
                     }
                     else
                     {
                         arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
+                        armRenderer.flipY = false;
                     }
-                    
+
                 }
                 else
                 {
