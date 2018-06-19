@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
     //PUBLIC VARIABLES
     public float speed;
@@ -21,12 +22,17 @@ public class EnemyController : MonoBehaviour {
     public Transform bulletSpawn;
     public Transform rotate;
     public LayerMask ignoreLayer;
+    public LayerMask patrolpost;
 
     //SCRIPT VARIABLES
     bool walkLeft;
     bool walkRight;
     bool firstTimeSeen = true;
+    bool flipLeft;
+    bool flipRight;
+    bool stop;
     float timeFired;
+    float timePassed = 0;
     int walkDirection;
     float nextFire = 0.0f;
     float shootAllowed = 0.0f;
@@ -41,8 +47,9 @@ public class EnemyController : MonoBehaviour {
     public Transform arm;
     Transform player;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         tf = GetComponent<Transform>();
@@ -65,13 +72,14 @@ public class EnemyController : MonoBehaviour {
                 Debug.LogWarning("DID NOT FIND A WALK DIRECTION (ENEMYCONTROLLER)");
                 break;
         }
-            
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void Fire()
     {
@@ -84,11 +92,11 @@ public class EnemyController : MonoBehaviour {
             var heading = player.position - tf.position;
 
             //ARM ROTATION TEST
-            Vector3 difference = player.position - arm.position;
+            /*Vector3 difference = player.position - arm.position;
             difference.Normalize();
 
             float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
+            arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);*/
 
             if (!gravityBullets)
             {
@@ -115,11 +123,11 @@ public class EnemyController : MonoBehaviour {
         }
         //ARM ROTATION!
         //arm.RotateAround(rotate.position, Vector3.forward, 20 * Time.deltaTime);
-
+        var heading = new Vector2(0,0);
         //PLAYERHIT SIDE RAYCAST
         if (!GameMaster.playerDead)
         {
-            var heading = player.position - tf.position;
+            heading = player.position - tf.position;
             RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
             Debug.DrawRay(arm.position, heading, Color.magenta);
             if (playerhit.collider != null)
@@ -133,17 +141,34 @@ public class EnemyController : MonoBehaviour {
                         return;
                     }
                     Fire();
+                    stop = true;
+                    Vector3 difference = player.position - arm.position;
+                    difference.Normalize();
+                    float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                    if(tf.rotation.y != 0)
+                    {
+                        arm.rotation = Quaternion.Euler(0f, 0, rotZ + rotationOffset);
+                    }
+                    else
+                    {
+                        arm.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffset);
+                    }
+                    
+                }
+                else
+                {
+                    stop = false;
                 }
             }
         }
-        
+
 
         //LEFT SIDE RAYCAST
-        RaycastHit2D hitLeftSide = Physics2D.Raycast(lsr.position, Vector2.left,1f);
+        /*RaycastHit2D hitLeftSide = Physics2D.Raycast(lsr.position, Vector2.left, 0.2f);
         Debug.DrawRay(lsr.position, Vector2.left, Color.red);
         if (hitLeftSide.collider != null)
         {
-            if(hitLeftSide.transform.tag == "PatrolPost")
+            if (hitLeftSide.transform.tag == "PatrolPost")
             {
                 walkLeft = false;
                 walkRight = true;
@@ -151,7 +176,7 @@ public class EnemyController : MonoBehaviour {
         }
 
         //RIGHT SIDE RAYCAST
-        RaycastHit2D hitRightSide = Physics2D.Raycast(rsr.position, Vector2.right, 1f);
+        RaycastHit2D hitRightSide = Physics2D.Raycast(rsr.position, Vector2.right, 0.2f);
         Debug.DrawRay(rsr.position, Vector2.right, Color.red);
         if (hitRightSide.collider != null)
         {
@@ -160,19 +185,52 @@ public class EnemyController : MonoBehaviour {
                 walkLeft = true;
                 walkRight = false;
             }
+        }*/
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1, patrolpost);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject.name == "PatrolpostLeft")
+            {
+                walkLeft = false;
+                walkRight = true;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+
+            if (colliders[i].gameObject.name == "PatrolpostRight")
+            {
+                walkRight = false;
+                walkLeft = true;
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
         }
 
         //WALK LEFT
-        if (walkLeft)
+        if (stop)
         {
-            sr.flipX = true;
-            rb.velocity = new Vector2(-speed * Time.deltaTime * 100f, rb.velocity.y);
+            if(heading.x > 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
         }
-        //WALK RIGHT
-        if (walkRight)
+
+        if (!stop)
         {
-            sr.flipX = false;
-            rb.velocity = new Vector2(speed * Time.deltaTime * 100f, rb.velocity.y);
+            if (walkLeft)
+            {
+                //sr.flipX = true;
+                rb.velocity = new Vector2(-speed * Time.deltaTime * 100f, rb.velocity.y);
+            }
+            //WALK RIGHT
+            if (walkRight)
+            {
+                //sr.flipX = false;
+                rb.velocity = new Vector2(speed * Time.deltaTime * 100f, rb.velocity.y);
+            }
         }
     }
 }
