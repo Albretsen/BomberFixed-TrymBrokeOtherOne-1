@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         scene = SceneManager.GetActiveScene();
 
-        if (scene.name == "DONT DO THIS")
+        /*if (scene.name == "DONT DO THIS")
         {
             switch (PlayerPrefs.GetString("SelectedChar"))
             {
@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("CURR CHAR NOT FOUND IN DROPDOWN LIST");
                     break;
             }
-        }
+        }*/
 
         if(PlayerPrefs.GetString("SelectedChar") != "Tom" && PlayerPrefs.GetString("SelectedChar") != "Tommy" && PlayerPrefs.GetString("SelectedChar") != "Tom2X")
         {
@@ -52,7 +52,7 @@ public class MainMenu : MonoBehaviour {
         }
 	}
 
-    public void Dropdown()
+    /*public void Dropdown()
     {
         dropDownSelected = dropdown.value;
         switch (dropDownSelected) {
@@ -68,6 +68,28 @@ public class MainMenu : MonoBehaviour {
             default:
                 Debug.Log("CHARACTER NOT FOUND!!");
                 break;
+        }
+    }*/
+
+    public void Clear()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void Options()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void Precise()
+    {
+        if(PlayerPrefs.GetInt("Precise") == 0)
+        {
+            PlayerPrefs.SetInt("Precise",1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Precise", 0);
         }
     }
 

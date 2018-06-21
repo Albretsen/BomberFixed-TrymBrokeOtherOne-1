@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     public float explosionRadius;
 
     //SCRIPT VARIABLES
-    public float GroundedRadius = .2f;
+    public float GroundedRadius = .02f;
     Vector2 movement;
     
     bool moveRight;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     Objective obj;
     Transform tfObj;
     GameMaster gameMaster;
+    PauseMenu pauseMenu;
 
     // Use this for initialization
     void Start () {
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
         obj = GameObject.Find("Objective").GetComponent<Objective>();
         tfObj = GameObject.Find("Objective").GetComponent<Transform>();
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        pauseMenu = GameObject.Find("MENU").GetComponent<PauseMenu>();
         //playAnim = GameObject.Find("Dead").GetComponent<PlayAnimation>();
     }
 
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour {
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, explosionRadius);
+        //Gizmos.DrawSphere(transform.position, explosionRadius);
         Gizmos.DrawSphere(GroundCheck.position, GroundedRadius);
     }
 

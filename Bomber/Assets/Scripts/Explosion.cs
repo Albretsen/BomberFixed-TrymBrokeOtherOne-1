@@ -55,6 +55,7 @@ public class Explosion : MonoBehaviour {
 
     bool hasExploded;
     float timePassed;
+    PauseMenu pauseMenu;
 
     // Use this for initialization
     void Start () {
@@ -66,6 +67,7 @@ public class Explosion : MonoBehaviour {
         footRight = GameObject.Find("Foot_Right").GetComponent<Rigidbody2D>();
         footLeft = GameObject.Find("Foot_Left").GetComponent<Rigidbody2D>();
         torso = GameObject.Find("Torso").GetComponent<Rigidbody2D>();*/
+        pauseMenu = GameObject.Find("MENU").GetComponent<PauseMenu>();
 
         //GENERATE RANDOMNESS
         headVelocityX = Random.Range(-5, 6);
@@ -135,5 +137,5 @@ public class Explosion : MonoBehaviour {
         torso.AddTorque(torsoRotation);
 
         hasExploded = true;
-    }
+    }   
 }

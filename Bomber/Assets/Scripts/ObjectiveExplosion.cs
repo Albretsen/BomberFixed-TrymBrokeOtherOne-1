@@ -27,7 +27,6 @@ public class ObjectiveExplosion : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timePassed = Time.time + 1;
         pauseMenu = GameObject.Find("MENU").GetComponent<PauseMenu>();
         gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
@@ -41,11 +40,10 @@ public class ObjectiveExplosion : MonoBehaviour
             Explode(direction);
         }
 
-        //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
+        //IF IT HAS EXPLODED AND 1 SECONDS HAVE PASSED, CHANGE SCENE!
         if(hasExploded && timePassed < Time.time)
         {
-            pauseMenu.WinScreen();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            pauseMenu.WinScreen(true);
         }
     }
 

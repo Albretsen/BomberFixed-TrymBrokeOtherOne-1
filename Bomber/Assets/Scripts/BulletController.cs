@@ -14,6 +14,11 @@ public class BulletController : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+
+    }
+
 	void OnTriggerEnter2D(Collider2D c)
     {
         if(c.tag == "Player")

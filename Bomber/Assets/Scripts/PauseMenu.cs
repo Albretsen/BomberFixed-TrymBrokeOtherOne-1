@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject optionsMenu;
     public GameObject winScreen;
     public GameObject buttons;
+    public Text bestTime;
     public Text score;
     public AudioMixer audioMixer;
     public Slider mainSlider;
@@ -23,6 +24,8 @@ public class PauseMenu : MonoBehaviour {
     float timeSpent;
     float levelMaxTime;
     float levelScore;
+    float timeStarted;
+    float highScore;
 
     string scene;
     bool scoreSet;
@@ -32,6 +35,8 @@ public class PauseMenu : MonoBehaviour {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        scoreSet = false;
+        timeStarted = Time.time;
 
         //AUDIO
         mainSlider.value = PlayerPrefs.GetFloat("Volume");
@@ -55,22 +60,69 @@ public class PauseMenu : MonoBehaviour {
 
 	}
 
-    public void WinScreen()
+    public void WinScreen(bool won)
     {
         scene = SceneManager.GetActiveScene().name;
         buttons.SetActive(false);
         winScreen.SetActive(true);
+        timeSpent = Time.time - timeStarted;
+        float highestScore = 0;
 
-        if (!scoreSet)
+        //HIGHSCORE MANAGING
+        switch (scene)
         {
-            timeSpent = Time.time;
-            if(scene == "TestScene2")
-            {
+            case "TestScene2":
 
-            }
-            Debug.Log("Time.time = " + Time.time);
-            score.text = timeSpent.ToString();
-            scoreSet = true;
+                //NOT NEW HIGHSCORE
+                if (PlayerPrefs.GetInt("Precise") != 0)
+                {
+                    timeSpent = (float)System.Math.Round(timeSpent, 5);
+                    highestScore = PlayerPrefs.GetFloat("TestScene2");
+                    highestScore = (float)System.Math.Round(highestScore, 5);
+                }
+                else
+                {
+                    timeSpent = (float)System.Math.Round(timeSpent, 2);
+                    highestScore = PlayerPrefs.GetFloat("TestScene2");
+                    highestScore = (float)System.Math.Round(highestScore, 2);
+                }
+
+                //SETTING THE NORMAL SCORE
+                if (won)
+                {
+                    if (!scoreSet)
+                    {
+                        score.text = "Time: " + timeSpent;
+                        scoreSet = true;
+                    }
+                }
+                else
+                {
+                    score.text = "Time: NO TIME";
+                }
+
+                //NEW HIGH SCORE
+                if (timeSpent < PlayerPrefs.GetFloat("TestScene2", 99999))
+                {
+                    PlayerPrefs.SetFloat("TestScene2", timeSpent);
+
+                    if (PlayerPrefs.GetInt("Precise") != 0)
+                    {
+                        timeSpent = (float)System.Math.Round(timeSpent, 5);
+                        highestScore = PlayerPrefs.GetFloat("TestScene2");
+                        highestScore = (float)System.Math.Round(highestScore, 5);
+                    }
+                    else
+                    {
+                        timeSpent = (float)System.Math.Round(timeSpent, 2);
+                        highestScore = PlayerPrefs.GetFloat("TestScene2");
+                        highestScore = (float)System.Math.Round(highestScore, 2);
+                    }
+                }
+                bestTime.text = "Best time: " + highestScore;
+                break;
+            case "TestScene3":
+                break;
         }
     }
 

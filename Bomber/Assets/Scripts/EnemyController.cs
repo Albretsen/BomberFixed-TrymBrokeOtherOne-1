@@ -65,6 +65,7 @@ public class EnemyController : MonoBehaviour
         {
             case 1:
                 walkLeft = true;
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
             case 2:
                 walkRight = true;
@@ -129,8 +130,8 @@ public class EnemyController : MonoBehaviour
         if (!GameMaster.playerDead)
         {
             heading = player.position - tf.position;
-            RaycastHit2D playerhit = Physics2D.Raycast(arm.position, heading, viewDistance, ignoreLayer);
-            Debug.DrawRay(arm.position, heading, Color.magenta);
+            RaycastHit2D playerhit = Physics2D.Raycast(bulletSpawn.position, heading, viewDistance, ignoreLayer);
+            Debug.DrawRay(bulletSpawn.position, heading, Color.magenta);
             if (playerhit.collider != null)
             {
                 if (playerhit.transform.tag == "Player" && Time.time > shootAllowed)
