@@ -108,6 +108,11 @@ public class Explosion : MonoBehaviour {
 
     void Update()
     {
+        if (GameMaster.playerDead && !Objective.objectiveDead)
+        {
+            pauseMenu.WinScreen(false);
+        }
+
         //IF IT HAS EXPLODED AND 3 SECONDS HAVE PASSED, CHANGE SCENE!
         if (hasExploded && timePassed < Time.time)
         {

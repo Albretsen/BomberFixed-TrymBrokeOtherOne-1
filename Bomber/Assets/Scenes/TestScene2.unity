@@ -8386,7 +8386,7 @@ Prefab:
     - target: {fileID: 224258067125091674, guid: 34e1f7f706cf79d4bbab79ff1fea71f3,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224258067125091674, guid: 34e1f7f706cf79d4bbab79ff1fea71f3,
         type: 2}
@@ -8447,11 +8447,6 @@ Prefab:
       propertyPath: buttons
       value: 
       objectReference: {fileID: 260606995}
-    - target: {fileID: 224158403048037292, guid: 34e1f7f706cf79d4bbab79ff1fea71f3,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34e1f7f706cf79d4bbab79ff1fea71f3, type: 2}
   m_IsPrefabParent: 0
@@ -24717,7 +24712,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1554732204 stripped
 Transform:

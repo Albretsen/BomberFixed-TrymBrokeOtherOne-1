@@ -61,13 +61,13 @@ public class PlayerController : MonoBehaviour {
                 GameMaster.distance = Vector2.Distance(transform.position, tfObj.position);
             }
         }
+        GameMaster.playerDead = true;
 
         gameMaster.Direction((transform.position - tfObj.position).normalized, 1);
 
         var explodingPlayer = (GameObject)Instantiate(explosionPrefab, rb.position, transform.rotation);
         var explosion = (GameObject)Instantiate(explosionFirePrefab, rb.position, transform.rotation);
         Destroy(gameObject);
-        GameMaster.playerDead = true;
     }
 
     void OnDrawGizmosSelected()

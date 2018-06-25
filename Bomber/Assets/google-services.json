@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1057805215272",
+    "firebase_url": "https://bombertom-2bdb5.firebaseio.com",
+    "project_id": "bombertom-2bdb5",
+    "storage_bucket": "bombertom-2bdb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057805215272:android:e53498c1a1c3629f",
+        "android_client_info": {
+          "package_name": "com.AsgeirAlbretsen.BomberTom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057805215272-b0mcf2ku8so0uqph6dk2nasqrv3m3e67.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1057805215272-b0mcf2ku8so0uqph6dk2nasqrv3m3e67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB992q2JpheiPWbQpub9_RRnpEL3Udg4js"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

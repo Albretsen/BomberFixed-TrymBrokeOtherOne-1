@@ -27,6 +27,10 @@ public class PauseMenu : MonoBehaviour {
     float timeStarted;
     float highScore;
 
+    //FIREBASE TEST
+    string userId = "ASGEIRTEST";
+    public string uid;
+
     string scene;
     bool scoreSet;
 
@@ -55,12 +59,9 @@ public class PauseMenu : MonoBehaviour {
                 Pause();
             }
         }
+    }
 
-        //AUDIO
-
-	}
-
-    public void WinScreen(bool won)
+    /*public void WinScreen(bool won)
     {
         scene = SceneManager.GetActiveScene().name;
         buttons.SetActive(false);
@@ -72,7 +73,6 @@ public class PauseMenu : MonoBehaviour {
         switch (scene)
         {
             case "TestScene2":
-
                 //NOT NEW HIGHSCORE
                 if (PlayerPrefs.GetInt("Precise") != 0)
                 {
@@ -95,35 +95,99 @@ public class PauseMenu : MonoBehaviour {
                         score.text = "Time: " + timeSpent;
                         scoreSet = true;
                     }
+
+                    //NEW HIGH SCORE
+                    if (timeSpent < PlayerPrefs.GetFloat("TestScene2", 99999))
+                    {
+                        PlayerPrefs.SetFloat("TestScene2", timeSpent);
+
+                        if (PlayerPrefs.GetInt("Precise") != 0)
+                        {
+                            timeSpent = (float)System.Math.Round(timeSpent, 5);
+                            highestScore = PlayerPrefs.GetFloat("TestScene2");
+                            highestScore = (float)System.Math.Round(highestScore, 5);
+                        }
+                        else
+                        {
+                            timeSpent = (float)System.Math.Round(timeSpent, 2);
+                            highestScore = PlayerPrefs.GetFloat("TestScene2");
+                            highestScore = (float)System.Math.Round(highestScore, 2);
+                        }
+                    }
+
                 }
+
+                //IF LEVEL WAS NOT COMPLETED, SET NO TIME
                 else
                 {
                     score.text = "Time: NO TIME";
-                }
-
-                //NEW HIGH SCORE
-                if (timeSpent < PlayerPrefs.GetFloat("TestScene2", 99999))
-                {
-                    PlayerPrefs.SetFloat("TestScene2", timeSpent);
-
-                    if (PlayerPrefs.GetInt("Precise") != 0)
-                    {
-                        timeSpent = (float)System.Math.Round(timeSpent, 5);
-                        highestScore = PlayerPrefs.GetFloat("TestScene2");
-                        highestScore = (float)System.Math.Round(highestScore, 5);
-                    }
-                    else
-                    {
-                        timeSpent = (float)System.Math.Round(timeSpent, 2);
-                        highestScore = PlayerPrefs.GetFloat("TestScene2");
-                        highestScore = (float)System.Math.Round(highestScore, 2);
-                    }
                 }
                 bestTime.text = "Best time: " + highestScore;
                 break;
             case "TestScene3":
                 break;
         }
+    }*/
+
+    public void WinScreen(bool won)
+    {
+        scene = SceneManager.GetActiveScene().name;
+        buttons.SetActive(false);
+        winScreen.SetActive(true);
+        timeSpent = Time.time - timeStarted;
+        float highestScore = 0;
+
+        //NOT NEW HIGHSCORE
+        if (PlayerPrefs.GetInt("Precise") != 0)
+        {
+            timeSpent = (float)System.Math.Round(timeSpent, 5);
+            highestScore = PlayerPrefs.GetFloat(scene);
+            highestScore = (float)System.Math.Round(highestScore, 5);
+        }
+        else
+        {
+            timeSpent = (float)System.Math.Round(timeSpent, 2);
+            highestScore = PlayerPrefs.GetFloat(scene);
+            highestScore = (float)System.Math.Round(highestScore, 2);
+        }
+
+        //SETTING THE NORMAL SCORE
+        if (won)
+        {
+            if (!scoreSet)
+            {
+                score.text = "Time: " + timeSpent;
+                scoreSet = true;
+            }
+
+            //NEW HIGH SCORE
+            if (timeSpent < PlayerPrefs.GetFloat(scene, 99999))
+            {
+                PlayerPrefs.SetFloat(scene, timeSpent);
+
+                if (PlayerPrefs.GetInt("Precise") != 0)
+                {
+                    timeSpent = (float)System.Math.Round(timeSpent, 5);
+                    highestScore = PlayerPrefs.GetFloat(scene);
+                    highestScore = (float)System.Math.Round(highestScore, 5);
+                }
+                else
+                {
+                    timeSpent = (float)System.Math.Round(timeSpent, 2);
+                    highestScore = PlayerPrefs.GetFloat(scene);
+                    highestScore = (float)System.Math.Round(highestScore, 2);
+                }
+            }
+
+        }
+
+        //IF LEVEL WAS NOT COMPLETED, SET NO TIME
+        else
+        {
+            score.text = "Time: NO TIME";
+        }
+        bestTime.text = "Best time: " + highestScore;
+
     }
 
     public void Restart()
@@ -187,3 +251,5 @@ public class PauseMenu : MonoBehaviour {
         GameIsPaused = true;
     }
 }
+
+

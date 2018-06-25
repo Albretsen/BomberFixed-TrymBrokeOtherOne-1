@@ -42,6 +42,8 @@ public class MainMenu : MonoBehaviour {
         {
             PlayerPrefs.SetString("SelectedChar", "Tom");
         }
+
+        //FIREBASE SETUP
     }
 	
 	// Update is called once per frame
@@ -126,5 +128,8 @@ public class MainMenu : MonoBehaviour {
     {
         PlayerPrefs.SetString("SelectedChar", "Tommy");
     }
+
+
 }
+
 

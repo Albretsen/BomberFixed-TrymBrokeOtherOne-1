@@ -20,7 +20,7 @@ public class GameMaster : MonoBehaviour {
     void Start () {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         scene = SceneManager.GetActiveScene();
-        playerDead = false;
+        GameMaster.playerDead = false;
         selectedChar = PlayerPrefs.GetString("SelectedChar", "Default");
         if (scene.name != "Character" && scene.name != "MainMenu")
         {

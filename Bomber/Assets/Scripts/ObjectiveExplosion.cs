@@ -29,6 +29,7 @@ public class ObjectiveExplosion : MonoBehaviour
     {
         pauseMenu = GameObject.Find("MENU").GetComponent<PauseMenu>();
         gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        Objective.objectiveDead = true;
     }
 
     void Update()
